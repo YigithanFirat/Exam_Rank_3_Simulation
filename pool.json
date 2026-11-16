@@ -1,0 +1,155 @@
+{
+  "levels": {
+    "1": {
+      "points": 16,
+      "questions": [
+        {
+          "name": "py_bracket_validator",
+          "filename": "py_bracket_validator.py",
+          "subject": "Bir dize alan ve içerisindeki parantezlerin (), [], {} doğru şekilde açılıp kapandığını doğrulayan bir fonksiyon yazın. Doğruysa True, yanlışsa False döndürsün.",
+          "tests": [
+            {"input": "[\"()[]{}\"]", "expected": "True"},
+            {"input": "[\"([)]\"]", "expected": "False"},
+            {"input": "[\"{[()]}\"]", "expected": "True"}
+          ]
+        },
+        {
+          "name": "py_cryptic_sorter",
+          "filename": "py_cryptic_sorter.py",
+          "subject": "Verilen bir sayı listesini özel bir mantığa göre sıralayan bir fonksiyon yazın. (Örn: Önce çift sayılar, sonra tek sayılar kendi içlerinde artan şekilde).",
+          "tests": [
+            {"input": "[[3, 1, 2, 4]]", "expected": "[2, 4, 1, 3]"}
+          ]
+        }
+      ]
+    },
+    "2": {
+      "points": 16,
+      "questions": [
+        {
+          "name": "py_echo_validator",
+          "filename": "py_echo_validator.py",
+          "subject": "Verilen bir dizenin belirli bir deseni tekrar edip etmediğini kontrol eden bir fonksiyon yazın.",
+          "tests": [
+            {"input": "[\"ababab\"]", "expected": "True"},
+            {"input": "[\"hello\"]", "expected": "False"}
+          ]
+        },
+        {
+          "name": "py_mirror_matrix",
+          "filename": "py_mirror_matrix.py",
+          "subject": "2 boyutlu bir matrisi (listelerin listesi) dikey eksende yansıtan (ters çeviren) bir fonksiyon yazın.",
+          "tests": [
+            {"input": "[[[1, 2], [3, 4]]]", "expected": "[[2, 1], [4, 3]]"}
+          ]
+        }
+      ]
+    },
+    "3": {
+      "points": 16,
+      "questions": [
+        {
+          "name": "py_hidenp",
+          "filename": "py_hidenp.py",
+          "subject": "İlk dizenin, ikinci dizenin içinde (karakter sırasını bozmadan) gizlenip gizlenmediğini kontrol eden bir fonksiyon yazın. Gizlenmişse True, aksi halde False döndürün.",
+          "tests": [
+            {"input": "[\"fgex.;\", \"tyf34gdgf;'ektufjhgdgex.;.;;vj\"]", "expected": "True"},
+            {"input": "[\"abc\", \"btarc\"]", "expected": "False"}
+          ]
+        },
+        {
+          "name": "py_inter",
+          "filename": "py_inter.py",
+          "subject": "İki dize alan ve her ikisinde de bulunan karakterleri, ilk dizede göründükleri sırayla (tekrarsız olarak) döndüren bir fonksiyon yazın.",
+          "tests": [
+            {"input": "[\"padinton\", \"paqefwtdjetyiytjneytjoeyjntoeynt\"]", "expected": "\"padinto\""}
+          ]
+        },
+        {
+          "name": "py_number_base_converter",
+          "filename": "py_number_base_converter.py",
+          "subject": "10'luk tabandaki bir tam sayıyı, verilen herhangi bir tabana (2 ile 16 arası) dönüştüren bir fonksiyon yazın.",
+          "tests": [
+            {"input": "[255, 16]", "expected": "\"FF\""},
+            {"input": "[10, 2]", "expected": "\"1010\""}
+          ]
+        },
+        {
+          "name": "py_pattern_tracker",
+          "filename": "py_pattern_tracker.py",
+          "subject": "Bir dize içerisindeki tekrar eden en uzun alt deseni bulan bir fonksiyon yazın.",
+          "tests": [
+            {"input": "[\"aabaabaaba\"]", "expected": "\"aab\""}
+          ]
+        }
+      ]
+    },
+    "4": {
+      "points": 16,
+      "questions": [
+        {
+          "name": "py_anagram",
+          "filename": "py_anagram.py",
+          "subject": "İki dizenin birbirinin anagramı (harflerinin yer değiştirmiş hali) olup olmadığını kontrol eden bir fonksiyon yazın. Boşlukları ve büyük/küçük harfi göz ardı edin.",
+          "tests": [
+            {"input": "[\"Listen\", \"Silent\"]", "expected": "True"},
+            {"input": "[\"Hello\", \"World\"]", "expected": "False"}
+          ]
+        },
+        {
+          "name": "py_shadow_merge",
+          "filename": "py_shadow_merge.py",
+          "subject": "İki sözlüğü (dictionary) birleştiren bir fonksiyon yazın. Aynı anahtarlar çakışırsa, ikinci sözlüğün değeri ilkini gölgelesin (ezsin).",
+        "tests": [
+        {"input": "[[1, 3, 5], [2, 4, 6]]", "expected": "[1, 2, 3, 4, 5, 6]"}
+        ]
+        },
+        {
+          "name": "py_string_permutation_checker",
+          "filename": "py_string_permutation_checker.py",
+          "subject": "Bir dizenin, başka bir dizenin permütasyonu olup olmadığını kontrol eden bir fonksiyon yazın.",
+          "tests": [
+            {"input": "[\"abc\", \"bca\"]", "expected": "True"}
+          ]
+        }
+      ]
+    },
+    "5": {
+      "points": 16,
+      "questions": [
+        {
+          "name": "py_string_sculptor",
+          "filename": "py_string_sculptor.py",
+          "subject": "Yalnızca alfabetik karakterlerin büyük/küçük harf durumunu değiştirerek bir dizeyi dönüştüren bir fonksiyon yazın. Alfabetik olmayanlar indeks sayısını etkilemez. İlk harf küçük, ikincisi büyük olmalıdır vb.",
+          "tests": [
+            {"input": "[\"hello\"]", "expected": "\"hElLo\""},
+            {"input": "[\"abc123def\"]", "expected": "\"aBc123DeF\""}
+          ]
+        },
+        {
+          "name": "py_twist_sequence",
+          "filename": "py_twist_sequence.py",
+          "subject": "Bir sayı listesini k pozisyon kadar sağa döndüren (son k elemanı başa alan) bir fonksiyon yazın.",
+          "tests": [
+            {"input": "[[1,2,3,4,5], 2]", "expected": "[4,5,1,2,3]"},
+            {"input": "[[1,2,3], 5]", "expected": "[2,3,1]"}
+          ]
+        }
+      ]
+    },
+    "6": {
+      "points": 20,
+      "questions": [
+        {
+          "name": "py_whisper_cipher",
+          "filename": "py_whisper_cipher.py",
+          "subject": "Bir dizedeki harfleri belirli bir miktarda kaydırarak Sezar şifrelemesi oluşturan bir fonksiyon yazın. Negatif kaydırma desteklenmelidir.",
+          "tests": [
+            {"input": "[\"hello\", 3]", "expected": "\"khoor\""},
+            {"input": "[\"abc\", -3]", "expected": "\"xyz\""}
+          ]
+        }
+      ]
+    }
+  }
+}
