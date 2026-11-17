@@ -14,11 +14,30 @@
           ]
         },
         {
-          "name": "py_cryptic_sorter",
+          "name": "cryptic_sorter",
           "filename": "py_cryptic_sorter.py",
-          "subject": "Verilen bir sayı listesini özel bir mantığa göre sıralayan bir fonksiyon yazın. (Örn: Önce çift sayılar, sonra tek sayılar kendi içlerinde artan şekilde).",
+          "subject": "Bir string listesini şu kriterlere göre sıralayan cryptic_sorter fonksiyonunu yazın:\n1. Uzunluğa göre (en kısa önce).\n2. Aynı uzunluktakiler ASCII sırasına göre (büyük/küçük harf duyarsız).\n3. Sesli harf sayısına göre (artan).\n4. Eşit olanlar listeye geliş sırasını korumalı.\nYasaklı fonksiyonlar: sorted(), list.sort()",
           "tests": [
-            {"input": "[[3, 1, 2, 4]]", "expected": "[2, 4, 1, 3]"}
+            {
+              "input": "[[\"apple\", \"cat\", \"banana\", \"dog\", \"elephant\"]]", 
+              "expected": "['cat', 'dog', 'apple', 'banana', 'elephant']"
+            },
+            {
+              "input": "[[\"aaa\", \"bbb\", \"AAA\", \"BBB\"]]", 
+              "expected": "['aaa', 'AAA', 'bbb', 'BBB']"
+            },
+            {
+              "input": "[[\"hello\", \"world\", \"hi\", \"test\"]]", 
+              "expected": "['hi', 'test', 'hello', 'world']"
+            },
+            {
+              "input": "[[]]", 
+              "expected": "[]"
+            },
+            {
+              "input": "[[\"\"]]", 
+              "expected": "['']"
+            }
           ]
         }
       ]
