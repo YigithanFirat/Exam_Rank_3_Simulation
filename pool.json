@@ -8,9 +8,14 @@
           "filename": "py_bracket_validator.py",
           "subject": "Bir dize alan ve içerisindeki parantezlerin (), [], {} doğru şekilde açılıp kapandığını doğrulayan bir fonksiyon yazın. Doğruysa True, yanlışsa False döndürsün.",
           "tests": [
+            {"input": "[\"()\"]", "expected": "True"},
             {"input": "[\"()[]{}\"]", "expected": "True"},
+            {"input": "[\"(]\"]", "expected": "False"},
             {"input": "[\"([)]\"]", "expected": "False"},
-            {"input": "[\"{[()]}\"]", "expected": "True"}
+            {"input": "[\"{[]}\"]", "expected": "True"},
+            {"input": "[\"hello(world)\"]", "expected": "True"},
+            {"input": "[\"((())\"]", "expected": "False"},
+            {"input": "[\"\"]", "expected": "True"}
           ]
         },
         {
