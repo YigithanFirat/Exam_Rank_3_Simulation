@@ -55,8 +55,15 @@
           "filename": "py_echo_validator.py",
           "subject": "Verilen bir dizenin belirli bir deseni tekrar edip etmediğini kontrol eden bir fonksiyon yazın.",
           "tests": [
-            {"input": "[\"ababab\"]", "expected": "True"},
-            {"input": "[\"hello\"]", "expected": "False"}
+            {"input": "[\"racecar\"]", "expected": "True"},
+            {"input": "[\"A man a plan a canal Panama\"]", "expected": "True"},
+            {"input": "[\"race a car\"]", "expected": "False"},
+            {"input": "[\"Was it a car or a cat I saw\"]", "expected": "True"},
+            {"input": "[\"hello\"]", "expected": "False"},
+            {"input": "[\"Madam Im Adam\"]", "expected": "True"},
+            {"input": "[\"madam\"]", "expected": "True"},
+            {"input": "[\"Able was I ere I saw Elba\"]", "expected": "True"},
+            {"input": "[\"\"]", "expected": "False"}
           ]
         },
         {
