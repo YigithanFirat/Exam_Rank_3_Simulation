@@ -24,15 +24,15 @@
           "subject": "Bir string listesini şu kriterlere göre sıralayan cryptic_sorter fonksiyonunu yazın:\n1. Uzunluğa göre (en kısa önce).\n2. Aynı uzunluktakiler ASCII sırasına göre (büyük/küçük harf duyarsız).\n3. Sesli harf sayısına göre (artan).\n4. Eşit olanlar listeye geliş sırasını korumalı.\nYasaklı fonksiyonlar: sorted(), list.sort()",
           "tests": [
             {
-              "input": "[[\"apple\", \"cat\", \"banana\", \"dog\", \"elephant\"]]", 
+              "input": "[[\"apple\", \"cat\", \"banana\", \"dog\", \"elephant\"]]",
               "expected": "['cat', 'dog', 'apple', 'banana', 'elephant']"
             },
             {
-              "input": "[[\"aaa\", \"bbb\", \"AAA\", \"BBB\"]]", 
+              "input": "[[\"aaa\", \"bbb\", \"AAA\", \"BBB\"]]",
               "expected": "['aaa', 'AAA', 'bbb', 'BBB']"
             },
             {
-              "input": "[[\"hello\", \"world\", \"hi\", \"test\"]]", 
+              "input": "[[\"hello\", \"world\", \"hi\", \"test\"]]",
               "expected": "['hi', 'test', 'hello', 'world']"
             },
             {
