@@ -69,10 +69,10 @@ def grade_question(question_data):
                 if isinstance(node, ast.Call):
                     if isinstance(node.func, ast.Name) and node.func.id == "sorted":
                         apply_cooldown()
-                        return False, "❌ MOULINETTE BAŞARISIZ: Yasaklı fonksiyon (sorted) kullanımı tespit edildi!"
+                        return False, "❌ MOULINETTE BAŞARISIZ [-42 (cheat)]: Yasaklı fonksiyon (sorted) kullanımı tespit edildi!"
                     elif isinstance(node.func, ast.Attribute) and node.func.attr == "sort":
                         apply_cooldown() # Ceza uygula
-                        return False, "❌ MOULINETTE BAŞARISIZ: Yasaklı metod (.sort) kullanımı tespit edildi!"
+                        return False, "❌ MOULINETTE BAŞARISIZ [-42 (cheat)]: Yasaklı metod (.sort) kullanımı tespit edildi!"
                         
     except SyntaxError:
         apply_cooldown() # Ceza uygula
