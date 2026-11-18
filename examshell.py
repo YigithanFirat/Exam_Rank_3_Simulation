@@ -5,6 +5,7 @@ import random
 import grader
 import time
 import threading
+import shutil # Klasör silme işlemleri için eklendi
 
 # 3 Saat = 3 * 60 * 60 = 10800 saniye
 EXAM_DURATION = 10800 
@@ -12,6 +13,16 @@ EXAM_DURATION = 10800
 def load_pool():
     with open('pool.json', 'r', encoding='utf-8') as f:
         return json.load(f)
+
+def clean_up():
+    """Çıkışta rendu, __pycache__ klasörlerini ve bekleme süresi dosyasını temizler."""
+    if os.path.exists("rendu"):
+        shutil.rmtree("rendu")
+    if os.path.exists("__pycache__"):
+        shutil.rmtree("__pycache__")
+    # Sınav bittiğinde veya çıkıldığında olası cezayı sıfırla
+    if os.path.exists(".cooldown.json"):
+        os.remove(".cooldown.json")
 
 def main():
     pool = load_pool()
@@ -30,6 +41,7 @@ def main():
                 # Kullanıcı input'ta bekliyor olsa bile programı anında kapatır
                 print("\n\n⏳ SINAV SÜRESİ DOLDU (3 Saat)! Sistem otomatik olarak kapatılıyor...")
                 print(f"Toplam Puanın: {total_score}/100\n")
+                clean_up() # Süre dolduğunda çıkmadan önce temizlik yap
                 os._exit(0)
             time.sleep(1) # Her 1 saniyede bir kontrol et
 
@@ -52,6 +64,7 @@ def main():
             cmd = input("examshell> ").strip().lower()
         except (KeyboardInterrupt, EOFError):
             print("\nSınavdan çıkılıyor...")
+            clean_up() # CTRL+C veya EOF ile çıkıldığında temizlik yap
             break
 
         if cmd == "status":
@@ -85,6 +98,7 @@ def main():
             print(f"\n================ GÖREV ================")
             print(f"Soru: {current_question['name']}")
             print(f"Dosya Adı: {current_question['filename']}")
+            print(f"Beklenen Şablon:\n{current_question['prototype']}")
             print(f"Görev Metni:\n{current_question['subject']}")
             print("=======================================\n")
 
@@ -114,6 +128,7 @@ def main():
             ans = input("> ").strip().lower()
             if ans == 'y':
                 print(f"Sınav sonlandırıldı. Toplam Puan: {total_score}/100")
+                clean_up() # Finish komutu ile çıkıldığında temizlik yap
                 sys.exit(0)
                 
         elif cmd == "":
