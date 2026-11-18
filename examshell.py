@@ -3,6 +3,11 @@ import os
 import sys
 import random
 import grader
+import time
+import threading
+
+# 3 Saat = 3 * 60 * 60 = 10800 saniye
+EXAM_DURATION = 10800 
 
 def load_pool():
     with open('pool.json', 'r', encoding='utf-8') as f:
@@ -14,6 +19,25 @@ def main():
     total_score = 0
     current_question = None
     
+    # Sınavın başlangıç zamanını kaydet
+    start_time = time.time()
+    
+    # Arka planda süreyi kontrol eden fonksiyon
+    def time_checker():
+        while True:
+            elapsed = time.time() - start_time
+            if elapsed >= EXAM_DURATION:
+                # Kullanıcı input'ta bekliyor olsa bile programı anında kapatır
+                print("\n\n⏳ SINAV SÜRESİ DOLDU (3 Saat)! Sistem otomatik olarak kapatılıyor...")
+                print(f"Toplam Puanın: {total_score}/100\n")
+                os._exit(0)
+            time.sleep(1) # Her 1 saniyede bir kontrol et
+
+    # Zamanlayıcıyı ayrı bir thread (iş parçacığı) olarak başlat
+    # daemon=True olması, program normal yollarla kapanırsa bu thread'in de ölmesini sağlar
+    timer_thread = threading.Thread(target=time_checker, daemon=True)
+    timer_thread.start()
+
     # rendu klasörünü oluştur
     if not os.path.exists("rendu"):
         os.makedirs("rendu")
@@ -31,7 +55,17 @@ def main():
             break
 
         if cmd == "status":
-            print(f"\n--- DURUM ---")
+            # Kalan süreyi hesapla
+            elapsed = time.time() - start_time
+            remaining = max(0, EXAM_DURATION - elapsed)
+            
+            # Saniyeyi Saat:Dakika:Saniye formatına çevir
+            hours, remainder = divmod(remaining, 3600)
+            minutes, seconds = divmod(remainder, 60)
+            time_str = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}"
+
+            print("\n--- DURUM ---")
+            print(f"Kalan Süre: {time_str}")
             print(f"Seviye: {current_level} / 6")
             print(f"Puan: {total_score} / 100")
             if current_question:
