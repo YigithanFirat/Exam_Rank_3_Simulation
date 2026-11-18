@@ -93,7 +93,7 @@
             {"input": "[\"aec\", \"abcde\"]", "expected": "False"},
             {"input": "[\"\", \"abc\"]", "expected": "True"},
             {"input": "[\"abc\", \"ab\"]", "expected": "False"},
-            {"input": "[\"aaaa\", \"aaa\"]", "expected": "True"},
+            {"input": "[\"aaaa\", \"aaa\"]", "expected": "False"},
             {"input": "[\"sing\", \"subsequence testing\"]", "expected": "True"}
           ]
         },
