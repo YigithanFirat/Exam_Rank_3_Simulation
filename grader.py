@@ -10,14 +10,14 @@ COOLDOWN_DURATION = 120
 
 
 def get_remaining_cooldown():
-    """Eğer bir bekleme süresi varsa, kalan süreyi saniye cinsinden döndürür."""
+    """Eğer bir bekleme süresi varsa, kalan süreyi saniye cinsinden
+    döndürür."""
     if os.path.exists(COOLDOWN_FILE):
         try:
             with open(COOLDOWN_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
                 last_fail_time = data.get("last_fail_time", 0)
                 elapsed = time.time() - last_fail_time
-                
                 if elapsed < COOLDOWN_DURATION:
                     return int(COOLDOWN_DURATION - elapsed)
         except Exception:
@@ -41,47 +41,65 @@ def grade_question(question_data):
     remaining_time = get_remaining_cooldown()
     if remaining_time > 0:
         minutes, seconds = divmod(remaining_time, 60)
-        return False, f"⏳ MOULINETTE MEŞGUL: Önceki başarısız denemeden dolayı beklemen gerekiyor.\nKalan süre: {minutes} dakika {seconds} saniye."
+        return False, (
+            "⏳ MOULINETTE MEŞGUL: Önceki başarısız denemeden "
+            f"dolayı beklemen gerekiyor.\nKalan süre: {minutes} dakika "
+            f"{seconds} saniye."
+        )
 
     filename = question_data["filename"]
     func_name = question_data["name"]
     tests = question_data["tests"]
     filepath = os.path.join("rendu", filename)
-    
+
     if not os.path.exists(filepath):
         apply_cooldown()
-        return False, f"Hata: {filename} dosyası './rendu/' dizininde bulunamadı!"
-        
+        return False, (
+            f"Hata: {filename} dosyası './rendu/' dizininde "
+            "bulunamadı!"
+        )
+
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             source_code = f.read()
-            
-            # --- ZORUNLU ŞABLON (PROTOTYPE) KONTROLÜ ---
             prototype = question_data.get("prototype")
             if prototype and prototype not in source_code:
                 apply_cooldown()
-                return False, f"❌ MOULINETTE BAŞARISIZ: Fonksiyon şablonu (prototype) eşleşmiyor veya eksik!\nBeklenen şablon:\n{prototype}"
-            # ------------------------------------------
+                return False, (
+                    "❌ MOULINETTE BAŞARISIZ: Fonksiyon şablonu (prototype) "
+                    "eşleşmiyor veya eksik!\nBeklenen şablon:\n"
+                    f"{prototype}"
+                )
 
             tree = ast.parse(source_code, filename=filepath)
-            
             for node in ast.walk(tree):
                 if isinstance(node, ast.Call):
-                    if isinstance(node.func, ast.Name) and node.func.id == "sorted":
+                    if (isinstance(node.func, ast.Name) and
+                            node.func.id == "sorted"):
                         apply_cooldown()
-                        return False, "❌ MOULINETTE BAŞARISIZ [-42 (cheat)]: Yasaklı fonksiyon (sorted) kullanımı tespit edildi!"
-                    elif isinstance(node.func, ast.Attribute) and node.func.attr == "sort":
-                        apply_cooldown() # Ceza uygula
-                        return False, "❌ MOULINETTE BAŞARISIZ [-42 (cheat)]: Yasaklı metod (.sort) kullanımı tespit edildi!"
-                        
+                        return False, (
+                            "❌ MOULINETTE BAŞARISIZ [-42 (cheat)]: "
+                            "Yasaklı fonksiyon (sorted) kullanımı tespit "
+                            "edildi!"
+                        )
+                    elif (isinstance(node.func, ast.Attribute) and
+                            node.func.attr == "sort"):
+                        apply_cooldown()
+                        return False, (
+                            "❌ MOULINETTE BAŞARISIZ [-42 (cheat)]: "
+                            "Yasaklı metod (.sort) kullanımı tespit edildi!"
+                        )
+
     except SyntaxError:
-        apply_cooldown() # Ceza uygula
-        return False, "❌ MOULINETTE BAŞARISIZ: Yazdığın kodda sözdizimi (Syntax) hatası var!"
+        apply_cooldown()
+        return False, (
+            "❌ MOULINETTE BAŞARISIZ: Yazdığın kodda sözdizimi "
+            "(Syntax) hatası var!"
+        )
     except Exception as e:
-        apply_cooldown() # Ceza uygula
+        apply_cooldown()
         return False, f"❌ AST Denetim Hatası: {e}"
 
-    # 3. Testleri çalıştıracak geçici bir betik (runner) oluşturuyoruz
     runner_code = f"""
 import sys
 import json
@@ -90,7 +108,10 @@ sys.path.insert(0, './rendu')
 try:
     from {filename[:-3]} import {func_name}
 except ImportError:
-    print("HATA: {func_name} fonksiyonu {filename} içinde bulunamadı veya import edilemedi!")
+    print(
+        f"HATA: {func_name} fonksiyonu {filename} içinde bulunamadı "
+        "veya import edilemedi!"
+    )
     sys.exit(1)
 except Exception as e:
     print(f"HATA (Sözdizimi/Çalıştırma): {{e}}")
@@ -100,15 +121,15 @@ tests = {json.dumps(tests)}
 
 for i, test in enumerate(tests, 1):
     try:
-        args = json.loads(test["input"]) 
-        expected = eval(test["expected"]) 
-        
+        args = json.loads(test["input"])
+        expected = eval(test["expected"])
         result = {func_name}(*args)
-        
         if result != expected:
-            print(f"Test {{i}} BAŞARISIZ! Girdi: {{args}} | Beklenen: {{expected}} | Senin Sonucun: {{result}}")
+            print(
+                f"Test {{i}} BAŞARISIZ! Girdi: {{args}} | "
+                f"Beklenen: {{expected}} | Senin Sonucun: {{result}}"
+            )
             sys.exit(1)
-            
     except Exception as e:
         print(f"Test {{i}} sırasında çökme yaşandı (Exception): {{e}}")
         sys.exit(1)
@@ -117,17 +138,20 @@ print("SUCCESS")
 """
     with open("_runner.py", "w", encoding="utf-8") as f:
         f.write(runner_code)
-        
-    python_cmd = sys.executable 
-    process = subprocess.run([python_cmd, "_runner.py"], capture_output=True, text=True)
-    
+
+    python_cmd = sys.executable
+    process = subprocess.run(
+        [python_cmd, "_runner.py"],
+        capture_output=True,
+        text=True
+    )
+
     if os.path.exists("_runner.py"):
         os.remove("_runner.py")
 
-    # 4. Sonuçları değerlendir
     if process.returncode == 0 and "SUCCESS" in process.stdout:
-        clear_cooldown() # Başarılı teslim! Cezayı kaldır.
+        clear_cooldown()
         return True, "✅ Mükemmel! Moulinette kodunu onayladı."
     else:
-        apply_cooldown() # Testlerden biri patladı, ceza uygula.
+        apply_cooldown()
         return False, f"❌ MOULINETTE BAŞARISIZ:\n{process.stdout.strip()}"
