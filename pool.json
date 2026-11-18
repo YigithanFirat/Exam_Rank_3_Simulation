@@ -88,8 +88,13 @@
           "filename": "py_hidenp.py",
           "subject": "İlk dizenin, ikinci dizenin içinde (karakter sırasını bozmadan) gizlenip gizlenmediğini kontrol eden bir fonksiyon yazın. Gizlenmişse True, aksi halde False döndürün.",
           "tests": [
-            {"input": "[\"fgex.;\", \"tyf34gdgf;'ektufjhgdgex.;.;;vj\"]", "expected": "True"},
-            {"input": "[\"abc\", \"btarc\"]", "expected": "False"}
+            {"input": "[\"abc\", \"a1b2c3\"]", "expected": "True"},
+            {"input": "[\"ace\", \"abcde\"]", "expected": "True"},
+            {"input": "[\"aec\", \"abcde\"]", "expected": "False"},
+            {"input": "[\"\", \"abc\"]", "expected": "True"},
+            {"input": "[\"abc\", \"ab\"]", "expected": "False"},
+            {"input": "[\"aaaa\", \"aaa\"]", "expected": "True"},
+            {"input": "[\"sing\", \"subsequence testing\"]", "expected": "True"}
           ]
         },
         {
@@ -97,7 +102,11 @@
           "filename": "py_inter.py",
           "subject": "İki dize alan ve her ikisinde de bulunan karakterleri, ilk dizede göründükleri sırayla (tekrarsız olarak) döndüren bir fonksiyon yazın.",
           "tests": [
-            {"input": "[\"padinton\", \"paqefwtdjetyiytjneytjoeyjntoeynt\"]", "expected": "\"padinto\""}
+            {"input": "[\"hello\", \"world\"]", "expected": "\"lo\""},
+            {"input": "[\"banana\", \"band\"]", "expected": "\"ban\""},
+            {"input": "[\"abcabc\", \"bc\"]", "expected": "\"bc\""},
+            {"input": "[\"abc\", \"xyz\"]", "expected": "\"\""},
+            {"input": "[\"\", \"abc\"]", "expected": "\"\""}
           ]
         },
         {
@@ -133,8 +142,12 @@
           "filename": "py_anagram.py",
           "subject": "İki dizenin birbirinin anagramı (harflerinin yer değiştirmiş hali) olup olmadığını kontrol eden bir fonksiyon yazın. Boşlukları ve büyük/küçük harfi göz ardı edin.",
           "tests": [
-            {"input": "[\"Listen\", \"Silent\"]", "expected": "True"},
-            {"input": "[\"Hello\", \"World\"]", "expected": "False"}
+            {"input": "[\"Listen\", \"silent\"]", "expected": "True"},
+            {"input": "[\"Triangle\", \"Integral\"]", "expected": "True"},
+            {"input": "[\"Dormitory\", \"Dirty Room\"]", "expected": "True"},
+            {"input": "[\"hello\", \"world\"]", "expected": "False"},
+            {"input": "[\"\", \"\"]", "expected": "True"},
+            {"input": "[\"abc\", \"abcc\"]", "expected": "False"}
           ]
         },
         {
@@ -142,7 +155,11 @@
           "filename": "py_shadow_merge.py",
           "subject": "İki sözlüğü (dictionary) birleştiren bir fonksiyon yazın. Aynı anahtarlar çakışırsa, ikinci sözlüğün değeri ilkini gölgelesin (ezsin).",
         "tests": [
-        {"input": "[[1, 3, 5], [2, 4, 6]]", "expected": "[1, 2, 3, 4, 5, 6]"}
+            {"input": "[[1,3,5], [2,4,6]]", "expected": "[1,2,3,4,5,6]"},
+            {"input": "[[1,2,3], [4,5,6]]", "expected": "[1,2,3,4,5,6]"},
+            {"input": "[[1], [2,3,4]]", "expected": "[1,2,3,4]"},
+            {"input": "[[], [1,2,3]]", "expected": "[1,2,3]"},
+            {"input": "[[1,1,2], [1,3,3]]", "expected": "[1,1,1,2,3,3]"}
         ]
         },
         {
@@ -150,7 +167,11 @@
           "filename": "py_string_permutation_checker.py",
           "subject": "Bir dizenin, başka bir dizenin permütasyonu olup olmadığını kontrol eden bir fonksiyon yazın.",
           "tests": [
-            {"input": "[\"abc\", \"bca\"]", "expected": "True"}
+            {"input": "[\"abc\", \"bca\"]", "expected": "True"},
+            {"input": "[\"abc\", \"def\"]", "expected": "False"},
+            {"input": "[\"listen\", \"silent\"]", "expected": "True"},
+            {"input": "[\"hello\", \"bello\"]", "expected": "False"},
+            {"input": "[\"\", \"\"]", "expected": "True"}
           ]
         }
       ]
@@ -164,7 +185,11 @@
           "subject": "Yalnızca alfabetik karakterlerin büyük/küçük harf durumunu değiştirerek bir dizeyi dönüştüren bir fonksiyon yazın. Alfabetik olmayanlar indeks sayısını etkilemez. İlk harf küçük, ikincisi büyük olmalıdır vb.",
           "tests": [
             {"input": "[\"hello\"]", "expected": "\"hElLo\""},
-            {"input": "[\"abc123def\"]", "expected": "\"aBc123DeF\""}
+            {"input": "[\"Hello World\"]", "expected": "\"hElLo WoRlD\""},
+            {"input": "[\" hello \"]", "expected": "\" hElLo \""},
+            {"input": "[\"abc123def\"]", "expected": "\"aBc123DeF\""},
+            {"input": "[\"Python3.9!\"]", "expected": "\"pYtHoN3.9!\""},
+            {"input": "[\"\"]", "expected": "\"\""}
           ]
         },
         {
@@ -173,7 +198,10 @@
           "subject": "Bir sayı listesini k pozisyon kadar sağa döndüren (son k elemanı başa alan) bir fonksiyon yazın.",
           "tests": [
             {"input": "[[1,2,3,4,5], 2]", "expected": "[4,5,1,2,3]"},
-            {"input": "[[1,2,3], 5]", "expected": "[2,3,1]"}
+            {"input": "[[1,2,3], 1]", "expected": "[3,1,2]"},
+            {"input": "[[1,2,3,4], 0]", "expected": "[1,2,3,4]"},
+            {"input": "[[1,2,3], 5]", "expected": "[2,3,1]"},
+            {"input": "[[], 3]", "expected": "[]"}
           ]
         }
       ]
@@ -187,6 +215,10 @@
           "subject": "Bir dizedeki harfleri belirli bir miktarda kaydırarak Sezar şifrelemesi oluşturan bir fonksiyon yazın. Negatif kaydırma desteklenmelidir.",
           "tests": [
             {"input": "[\"hello\", 3]", "expected": "\"khoor\""},
+            {"input": "[\"Hello World!\", 1]", "expected": "\"Ifmmp Xpsme!\""},
+            {"input": "[\"xyz\", 3]", "expected": "\"abc\""},
+            {"input": "[\"ABC123def\", 5]", "expected": "\"FGH123ijk\""},
+            {"input": "[\"\", 10]", "expected": "\"\""},
             {"input": "[\"abc\", -3]", "expected": "\"xyz\""}
           ]
         }
