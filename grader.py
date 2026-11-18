@@ -41,19 +41,28 @@ def grade_question(question_data):
     remaining_time = get_remaining_cooldown()
     if remaining_time > 0:
         minutes, seconds = divmod(remaining_time, 60)
-        return False, f"⏳ MOULINETTE MEŞGUL: Önceki başarsız denemeden dolayı beklemen gerekiyor.\nKalan süre: {minutes} dakika {seconds} saniye."
+        return False, f"⏳ MOULINETTE MEŞGUL: Önceki başarısız denemeden dolayı beklemen gerekiyor.\nKalan süre: {minutes} dakika {seconds} saniye."
 
     filename = question_data["filename"]
     func_name = question_data["name"]
     tests = question_data["tests"]
     filepath = os.path.join("rendu", filename)
+    
     if not os.path.exists(filepath):
         apply_cooldown()
-        return False, f"Hata: {filename} dosyası './rendu/' dizininde "
-    "bulunamadı!"
+        return False, f"Hata: {filename} dosyası './rendu/' dizininde bulunamadı!"
+        
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             source_code = f.read()
+            
+            # --- ZORUNLU ŞABLON (PROTOTYPE) KONTROLÜ ---
+            prototype = question_data.get("prototype")
+            if prototype and prototype not in source_code:
+                apply_cooldown()
+                return False, f"❌ MOULINETTE BAŞARISIZ: Fonksiyon şablonu (prototype) eşleşmiyor veya eksik!\nBeklenen şablon:\n{prototype}"
+            # ------------------------------------------
+
             tree = ast.parse(source_code, filename=filepath)
             
             for node in ast.walk(tree):
@@ -64,6 +73,7 @@ def grade_question(question_data):
                     elif isinstance(node.func, ast.Attribute) and node.func.attr == "sort":
                         apply_cooldown() # Ceza uygula
                         return False, "❌ MOULINETTE BAŞARISIZ: Yasaklı metod (.sort) kullanımı tespit edildi!"
+                        
     except SyntaxError:
         apply_cooldown() # Ceza uygula
         return False, "❌ MOULINETTE BAŞARISIZ: Yazdığın kodda sözdizimi (Syntax) hatası var!"
