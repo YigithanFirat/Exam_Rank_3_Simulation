@@ -6,6 +6,7 @@
         {
           "name": "bracket_validator",
           "filename": "py_bracket_validator.py",
+          "prototype": "def bracket_validator(s: str) -> bool:",
           "subject": "Bir dize alan ve içerisindeki parantezlerin (), [], {} doğru şekilde açılıp kapandığını doğrulayan bir fonksiyon yazın. Doğruysa True, yanlışsa False döndürsün.",
           "tests": [
             {"input": "[\"()\"]", "expected": "True"},
@@ -21,6 +22,7 @@
         {
           "name": "cryptic_sorter",
           "filename": "py_cryptic_sorter.py",
+          "prototype": "def cryptic_sorter(strings: list[str]) -> list[str]:",
           "subject": "Bir string listesini şu kriterlere göre sıralayan cryptic_sorter fonksiyonunu yazın:\n1. Uzunluğa göre (en kısa önce).\n2. Aynı uzunluktakiler ASCII sırasına göre (büyük/küçük harf duyarsız).\n3. Sesli harf sayısına göre (artan).\n4. Eşit olanlar listeye geliş sırasını korumalı.\nYasaklı fonksiyonlar: sorted(), list.sort()",
           "tests": [
             {
@@ -53,6 +55,7 @@
         {
           "name": "echo_validator",
           "filename": "py_echo_validator.py",
+          "prototype": "def echo_validator(text: str) -> bool:",
           "subject": "Verilen bir dizenin palindrom olup olmadığını kontrol eden bir fonksiyon yazın. Boşlukları ve büyük/küçük harf durumunu göz ardı edin, karşılaştırma için yalnızca alfabetik karakterleri dikkate alın.",
           "tests": [
             {"input": "[\"racecar\"]", "expected": "True"},
@@ -69,6 +72,7 @@
         {
           "name": "mirror_matrix",
           "filename": "py_mirror_matrix.py",
+          "prototype": "def mirror_matrix(matrix: list[list[int]]) -> list[list[int]]:",
           "subject": "2 boyutlu bir matrisi (listelerin listesi) dikey eksende yansıtan (ters çeviren) bir fonksiyon yazın.",
           "tests": [
             {"input": "[[[1,2,3],[4,5,6]]]", "expected": "[[3,2,1],[6,5,4]]"},
@@ -86,6 +90,7 @@
         {
           "name": "hidenp",
           "filename": "py_hidenp.py",
+          "prototype": "def hidenp(small: str, big: str) -> bool:",
           "subject": "İlk dizenin, ikinci dizenin içinde (karakter sırasını bozmadan) gizlenip gizlenmediğini kontrol eden bir fonksiyon yazın. Karakterlerin ardışık olması gerekmez ancak sırası korunmalıdır. Fonksiyon büyük/küçük harf duyarlıdır. Gizlenmişse True, aksi halde False döndürün.",
           "tests": [
             {"input": "[\"abc\", \"a1b2c3\"]", "expected": "True"},
@@ -100,6 +105,7 @@
         {
           "name": "inter",
           "filename": "py_inter.py",
+          "prototype": "def inter(s1: str, s2: str) -> str:",
           "subject": "İki dize alan ve her ikisinde de bulunan karakterleri, ilk dizede göründükleri sırayla (tekrarsız olarak) döndüren bir fonksiyon yazın.",
           "tests": [
             {"input": "[\"hello\", \"world\"]", "expected": "\"lo\""},
@@ -112,6 +118,7 @@
         {
           "name": "number_base_converter",
           "filename": "py_number_base_converter.py",
+          "prototype": "def number_base_converter(number: str, from_base: int, to_base: int) -> str:",
           "subject": "Bir sayıyı bir tabandan diğerine dönüştüren bir fonksiyon yazın. 2 ile 36 (dahil) arasındaki tabanları desteklemelidir. 10-35 arası değerler için A-Z harflerini kullanın. Geçersiz girdiler için 'ERROR' döndürün.",
           "tests": [
             {"input": "[\"1010\", 2, 10]", "expected": "\"10\""},
@@ -127,6 +134,7 @@
         {
           "name": "pattern_tracker",
           "filename": "py_pattern_tracker.py",
+          "prototype": "def pattern_tracker(text: str) -> int:",
           "subject": "Bir dizedeki geçerli ardışık rakam çiftlerinin sayısını hesaplayan bir fonksiyon yazın. Geçerli bir çift, ikinci rakamın birinciden tam olarak bir fazla olduğu iki bitişik rakamdan oluşur. 9'un ardından 0 gelmesi geçerli bir çift DEĞİLDİR.",
           "tests": [
             {"input": "[\"123\"]", "expected": "2"},
@@ -146,6 +154,7 @@
         {
           "name": "anagram",
           "filename": "py_anagram.py",
+          "prototype": "def anagram(s1: str, s2: str) -> bool:",
           "subject": "İki dizenin birbirinin anagramı (harflerinin yer değiştirmiş hali) olup olmadığını kontrol eden bir fonksiyon yazın. Harfler tam olarak aynı miktarda olmalı; boşluklar ve büyük/küçük harf durumu göz ardı edilmelidir.",
           "tests": [
             {"input": "[\"listen\", \"silent\"]", "expected": "True"},
@@ -159,6 +168,7 @@
         {
           "name": "shadow_merge",
           "filename": "py_shadow_merge.py",
+          "prototype": "def shadow_merge(list1: list[int], list2: list[int]) -> list[int]:",
           "subject": "İki sıralı listeyi birleştirerek tek bir sıralı liste oluşturan bir fonksiyon yazın.",
           "tests": [
             {"input": "[[1,3,5], [2,4,6]]", "expected": "[1,2,3,4,5,6]"},
@@ -171,6 +181,7 @@
         {
           "name": "string_permutation_checker",
           "filename": "py_string_permutation_checker.py",
+          "prototype": "def string_permutation_checker(s1: str, s2: str) -> bool:",
           "subject": "İki dizenin birbirinin permütasyonu olup olmadığını belirleyen bir fonksiyon yazın. Karşılaştırma büyük/küçük harfe duyarlıdır. Boşluklar ve noktalama işaretleri normal karakter olarak sayılır. Boş dizeler birbirinin permütasyonudur.",
           "tests": [
             {"input": "[\"abc\", \"bca\"]", "expected": "True"},
@@ -191,6 +202,7 @@
         {
           "name": "string_sculptor",
           "filename": "py_string_sculptor.py",
+          "prototype": "def string_sculptor(text: str) -> str:",
           "subject": "Yalnızca alfabetik karakterlerin büyük/küçük harf durumunu değiştirerek bir dizeyi dönüştüren bir fonksiyon yazın. Alfabetik olmayanlar indeks sayısını etkilemez. İlk harf küçük, ikincisi büyük olmalıdır vb.",
           "tests": [
             {"input": "[\"hello\"]", "expected": "\"hElLo\""},
@@ -204,6 +216,7 @@
         {
           "name": "twist_sequence",
           "filename": "py_twist_sequence.py",
+          "prototype": "def twist_sequence(arr: list[int], k: int) -> list[int]:",
           "subject": "Bir sayı listesini k pozisyon kadar sağa döndüren (son k elemanı başa alan) bir fonksiyon yazın.",
           "tests": [
             {"input": "[[1,2,3,4,5], 2]", "expected": "[4,5,1,2,3]"},
@@ -221,6 +234,7 @@
         {
           "name": "whisper_cipher",
           "filename": "py_whisper_cipher.py",
+          "prototype": "def whisper_cipher(text: str, shift: int) -> str:",
           "subject": "Bir dizedeki harfleri belirli bir miktarda kaydırarak Sezar şifrelemesi oluşturan bir fonksiyon yazın. Alfabetik olmayan karakterler değişmeden kalmalıdır. Negatif kaydırma (sola kaydırma) desteklenmelidir.",
           "tests": [
             {"input": "[\"hello\", 3]", "expected": "\"khoor\""},
