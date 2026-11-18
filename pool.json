@@ -112,9 +112,15 @@
         {
           "name": "py_pattern_tracker",
           "filename": "py_pattern_tracker.py",
-          "subject": "Bir dize içerisindeki tekrar eden en uzun alt deseni bulan bir fonksiyon yazın.",
+          "subject": "Bir dizedeki geçerli ardışık rakam çiftlerinin sayısını hesaplayan bir fonksiyon yazın. Geçerli bir çift, ikinci rakamın birinciden tam olarak bir fazla olduğu iki bitişik rakamdan oluşur. 9'un ardından 0 gelmesi geçerli bir çift DEĞİLDİR.",
           "tests": [
-            {"input": "[\"aabaabaaba\"]", "expected": "\"aab\""}
+            {"input": "[\"123\"]", "expected": "\"2\""},
+            {"input": "[\"12a34\"]", "expected": "\"2\""},
+            {"input": "[\"987654321\"]", "expected": "\"0\""},
+            {"input": "[\"01234567\"]", "expected": "\"7\""},
+            {"input": "[\"abc\"]", "expected": "\"0\""},
+            {"input": "[\"1a2b3c4\"]", "expected": "\"0\""},
+            {"input": "[\"112233\"]", "expected": "\"2\""}
           ]
         }
       ]
