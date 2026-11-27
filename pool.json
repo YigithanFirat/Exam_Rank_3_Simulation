@@ -46,21 +46,6 @@
               "expected": "['']"
             }
           ]
-        },
-        {
-          "name": "two_sum",
-          "filename": "py_two_sum.py",
-          "prototype": "def two_sum(nums: list[int], target: int) -> list[int]:",
-          "subject": "Tam sayılardan oluşan bir `nums` listesi ve bir `target` tam sayısı alan; toplamları `target` değerine eşit olan iki sayının indekslerini küçükten büyüğe sıralı bir liste olarak döndüren bir fonksiyon yazın. Her girdinin tam olarak bir geçerli çözümü vardır ve aynı eleman iki kez kullanılamaz. (İpucu: O(n^2) zaman karmaşıklığından daha hızlı bir çözüm geliştirmeyi deneyin.)",
-          "tests": [
-            {"input": "[[2, 7, 11, 15], 9]", "expected": "[0, 1]"},
-            {"input": "[[3, 2, 4], 6]", "expected": "[1, 2]"},
-            {"input": "[[3, 3], 6]", "expected": "[0, 1]"},
-            {"input": "[[-1, -2, -3, -4, -5], -8]", "expected": "[2, 4]"},
-            {"input": "[[0, 4, 3, 0], 0]", "expected": "[0, 3]"},
-            {"input": "[[-3, 4, 3, 90], 0]", "expected": "[0, 2]"},
-            {"input": "[[1, 5, 8, 12, 20], 32]", "expected": "[3, 4]"}
-          ]
         }
       ]
     },
